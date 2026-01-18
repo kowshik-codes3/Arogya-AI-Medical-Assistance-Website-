@@ -1,0 +1,16 @@
+{
+  "name": "signal_processing_wasm",
+  "version": "1.0.0",
+  "description": "WebAssembly module for high-performance rPPG signal processing",
+  "scripts": {
+    "build:wasm": "wasm-pack build --target web --out-dir dist",
+    "build:cpp": "emcc src/signal_processing.cpp -o dist/signal_processing.wasm -s EXPORTED_FUNCTIONS=\"['_malloc','_free','_process_rppg_signals','_calculate_heart_rate_fft','_calculate_respiration_rate','_bandpass_filter']\" -s EXPORTED_RUNTIME_METHODS=\"['ccall','cwrap']\" -O3",
+    "clean": "rm -rf dist/*"
+  },
+  "devDependencies": {
+    "wasm-pack": "^0.12.0"
+  },
+  "files": [
+    "dist/*"
+  ]
+}
